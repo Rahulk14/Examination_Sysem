@@ -1,19 +1,19 @@
 <?php 
 session_start();
- include("../conn.php");
+ include("../../../conn.php");
  
 
 extract($_POST);
 
-$selAcc = $conn->query("SELECT * FROM examinee_tbl WHERE exmne_email='$username' AND exmne_password='$pass'  ");
+$selAcc = $conn->query("SELECT * FROM admin_acc WHERE admin_user='$username' AND admin_pass='$pass'  ");
 $selAccRow = $selAcc->fetch(PDO::FETCH_ASSOC);
 
 
 if($selAcc->rowCount() > 0)
 {
-  $_SESSION['examineeSession'] = array(
-  	 'exmne_id' => $selAccRow['exmne_id'],
-  	 'examineenakalogin' => true
+  $_SESSION['admin'] = array(
+  	 'admin_id' => $selAccRow['admin_id'],
+  	 'adminnakalogin' => true
   );
   $res = array("res" => "success");
 
